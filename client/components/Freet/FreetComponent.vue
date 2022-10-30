@@ -35,6 +35,9 @@
           🗑️ Delete
         </button>
       </div>
+      <button @click="likeFreet">
+        Like
+        </button>
     </header>
     <textarea
       v-if="editing"
