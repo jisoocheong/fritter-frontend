@@ -16,6 +16,12 @@
       </router-link>
       <router-link
         v-if="$store.state.username"
+        to="/profile"
+      >
+        Profile
+      </router-link>
+      <router-link
+        v-if="$store.state.username"
         to="/account"
       >
         Account
@@ -42,7 +48,7 @@
 <style scoped>
 nav {
     padding: 1vw 2vw;
-    background-color: #ccc;
+    background-color: #42a1ff;
     display: flex;
     justify-content: space-between;
     align-items: center;

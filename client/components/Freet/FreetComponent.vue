@@ -35,6 +35,20 @@
           🗑️ Delete
         </button>
       </div>
+      <button 
+      v-if="$store.state.username">
+        <3 Like
+      </button>
+      <button 
+      v-if="$store.state.username"
+      @click="startCommenting">
+        Comment
+      </button>
+      <button 
+      v-else
+      @click="stopCommenting">
+        Cancel Comment
+      </button>
     </header>
     <textarea
       v-if="editing"
@@ -52,6 +66,11 @@
       Posted at {{ freet.dateModified }}
       <i v-if="freet.edited">(edited)</i>
     </p>
+    <textarea
+      placeholder="Comment here"
+      v-if="commenting"
+      class="content"
+    />
     <section class="alerts">
       <article
         v-for="(status, alert, index) in alerts"
@@ -77,11 +96,24 @@ export default {
   data() {
     return {
       editing: false, // Whether or not this freet is in edit mode
+      commenting: false,
       draft: this.freet.content, // Potentially-new content for this freet
       alerts: {} // Displays success/error messages encountered during freet modification
     };
   },
   methods: {
+    startCommenting() {
+      /**
+       * Enables comment mode on this freet.
+       */
+       this.commenting = true;
+    },
+    stopCommenting() {
+      /**
+       * Disables edit mode on this freet.
+       */
+       this.commenting = false;
+    },
     startEditing() {
       /**
        * Enables edit mode on this freet.
